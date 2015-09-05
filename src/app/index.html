@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="AngularApp">
+  <head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </head>
+  <body ng-controller="MainController">
+    <div>
+      {{message}}
+    </div>
+
+    <div ng-if="error">
+      {{error}}
+    </div>
+
+    <div ng-if="users">
+      <ul>
+          <li ng-repeat="user in users">
+            <span>{{user.name}}</span>
+            <p>{{user.email}}</p>
+          </li>
+        </ul>
+    </div>
+  </body>
+</html>
