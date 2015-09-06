@@ -1,18 +1,20 @@
-var angularApp = angular.module('AngularApp', []);
+(function () {
+  var MainController = function ($scope, $http) {
+    var onComplete = function (response) {
+      $scope.users = response.data;
+    };
 
-angularApp.controller('MainController', function ($scope, $http) {
+    var onError = function (response) {
+      $scope.error = 'Erro ao obter usuário';
+    };
 
-  var onComplete = function (response) {
-    $scope.users = response.data;
-  };
+    $http.get('http://localhost/angular.content.api/users')
+          .then(onComplete, onError);
 
-  var onError = function (response) {
-    $scope.error = 'Erro ao obter usuário';
-  };
+    $scope.message = 'Olá AngularJS';
+  }
 
-  $http.get('http://localhost/angular.content.api/users')
-        .then(onComplete, onError);
+  var app = angular.module('AngularApp', []);
 
-  $scope.message = 'Olá AngularJS';
-
-});
+  app.controller('MainController', MainController);
+}());
